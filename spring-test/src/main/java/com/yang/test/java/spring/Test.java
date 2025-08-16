@@ -1,6 +1,5 @@
 package com.yang.test.java.spring;
 import org.springframework.beans.BeansException;
-import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.beans.factory.support.BeanDefinitionRegistryPostProcessor;
 import org.springframework.beans.factory.support.RootBeanDefinition;
@@ -28,9 +27,6 @@ class MyBeanDefinitionRegistryPostProcessor implements BeanDefinitionRegistryPos
 	public void postProcessBeanDefinitionRegistry(BeanDefinitionRegistry registry) throws BeansException {
 		RootBeanDefinition beanDefinition = new RootBeanDefinition(MyBean.class);
 		registry.registerBeanDefinition("myBean", beanDefinition);
-	}
-	@Override
-	public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
 	}
 }
 class MyBean {}
