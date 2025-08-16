@@ -225,8 +225,8 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 	@Nullable
 	private String id;
 	public DefaultListableBeanFactory(String id) {
-		this.id = id;
 		super();
+		this.id = id;
 	}
 	public DefaultListableBeanFactory() {
 		super();
