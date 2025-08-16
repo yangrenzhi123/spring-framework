@@ -82,12 +82,20 @@ public class AnnotationConfigApplicationContext extends GenericApplicationContex
 		this.scanner = new ClassPathBeanDefinitionScanner(this);
 	}
 
+	@Nullable
+	private String id;
 	/**
 	 * Create a new AnnotationConfigApplicationContext, deriving bean definitions
 	 * from the given component classes and automatically refreshing the context.
 	 * @param componentClasses one or more component classes &mdash; for example,
 	 * {@link Configuration @Configuration} classes
 	 */
+	public AnnotationConfigApplicationContext(String id, Class<?>... componentClasses) {
+		this();
+		this.id = id;
+		register(componentClasses);
+		refresh();
+	}
 	public AnnotationConfigApplicationContext(Class<?>... componentClasses) {
 		this();
 		register(componentClasses);
