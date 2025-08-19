@@ -134,7 +134,7 @@ class ConfigurationClassBeanDefinitionReader {
 		if (trackedConditionEvaluator.shouldSkip(configClass)) {
 			String beanName = configClass.getBeanName();
 			if (StringUtils.hasLength(beanName) && this.registry.containsBeanDefinition(beanName)) {
-				this.registry.removeBeanDefinition(beanName);
+				this.registry.removeBeanDefinition(beanName); // FIXME removeBeanDefinition
 			}
 			this.importRegistry.removeImportingClass(configClass.getMetadata().getClassName());
 			return;
@@ -341,7 +341,7 @@ class ConfigurationClassBeanDefinitionReader {
 		// as long as the bean class is the same.
 		if (existingBeanDef instanceof ScannedGenericBeanDefinition scannedBeanDef) {
 			if (beanMethod.getMetadata().getReturnTypeName().equals(scannedBeanDef.getBeanClassName())) {
-				this.registry.removeBeanDefinition(beanName);
+				this.registry.removeBeanDefinition(beanName);  // FIXME removeBeanDefinition
 			}
 			return false;
 		}

@@ -262,7 +262,7 @@ class ConfigurationClassParser {
 			else if (configClass.isScanned()) {
 				String beanName = configClass.getBeanName();
 				if (StringUtils.hasLength(beanName) && this.registry.containsBeanDefinition(beanName)) {
-					this.registry.removeBeanDefinition(beanName);
+					this.registry.removeBeanDefinition(beanName); // FIXME removeBeanDefinition
 				}
 				// An implicitly scanned bean definition should not override an explicit import.
 				return;
