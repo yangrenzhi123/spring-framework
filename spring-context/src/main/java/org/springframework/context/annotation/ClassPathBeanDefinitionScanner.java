@@ -81,6 +81,9 @@ public class ClassPathBeanDefinitionScanner extends ClassPathScanningCandidateCo
 	 * @param registry the {@code BeanFactory} to load bean definitions into, in the form
 	 * of a {@code BeanDefinitionRegistry}
 	 */
+	public ClassPathBeanDefinitionScanner(String id, BeanDefinitionRegistry registry) {
+		this(id, registry, true, getOrCreateEnvironment(registry), (registry instanceof ResourceLoader resourceLoader ? resourceLoader : null));
+	}
 	public ClassPathBeanDefinitionScanner(BeanDefinitionRegistry registry) {
 		this(registry, true);
 	}
@@ -156,6 +159,20 @@ public class ClassPathBeanDefinitionScanner extends ClassPathScanningCandidateCo
 	 * @param resourceLoader the {@link ResourceLoader} to use
 	 * @since 4.3.6
 	 */
+	@Nullable
+	private String id;
+	public ClassPathBeanDefinitionScanner(String id, BeanDefinitionRegistry registry, boolean useDefaultFilters,
+										  Environment environment, @Nullable ResourceLoader resourceLoader) {
+		this.id = id;
+		Assert.notNull(registry, "BeanDefinitionRegistry must not be null");
+		this.registry = registry;
+
+		if (useDefaultFilters) {
+			registerDefaultFilters();
+		}
+		setEnvironment(environment);
+		setResourceLoader(resourceLoader);
+	}
 	public ClassPathBeanDefinitionScanner(BeanDefinitionRegistry registry, boolean useDefaultFilters,
 			Environment environment, @Nullable ResourceLoader resourceLoader) {
 
